@@ -9,12 +9,12 @@ const User = require("../models/User.model");
 
 /* GET home site */
 router.get("/", (req, res, next) => {
-  res.render("index");
+  res.render("index", { layout: false });
 });
 
 /* GET signup */
 router.get("/signup", (req, res, next) => {
-  res.render("signup");
+  res.render("signup", { layout: false });
 });
 
 /* POST signup */
@@ -37,7 +37,7 @@ router.post("/signup", (req, res, next) => {
 
 /* GET login */
 router.get("/login", (req, res, next) => {
-  res.render("login");
+  res.render("login", { layout: false });
 });
 
 /* POST login */
