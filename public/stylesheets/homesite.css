@@ -1,0 +1,90 @@
+/* brown-color: #5E3C09
+blue-color: #112351 */
+  @import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Inter:wght@400;700&family=Lato:wght@400;700;900&display=swap');
+
+
+
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+ 
+#homesite {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+}
+
+#homesite .logo {
+    height: 65px;
+
+  }
+  
+#homesite nav {
+  background-color: #AB9D9D;
+  display: flex;
+  padding: 10px 0px 10px 50px;
+}
+
+#homesite .nav-content {
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding-right: 150px;
+}
+.nav-content a{
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.login{
+color:#112351;
+font-weight: bold;
+}
+
+.signup{
+color:#5E3C09;
+font-weight: bold;
+}
+
+#homesite .main {
+  background-image: url('/images/homesite.jpg');
+  background-size: cover;
+  background-position: right;
+  flex: 1;
+}
+
+.description {
+  width: 24rem;
+  margin-top: 100px;
+  margin-left: 50px;
+}
+
+.main h1{
+  color: #5E3C09;
+  text-align: center;
+  font-size: 40px;
+  text-shadow: white 1px 0 3px;
+
+}
+
+.main p {
+  color: white;
+  text-shadow: #FC0 1px 0 10px;
+  font-size: 20px;
+  width: 24rem;
+  letter-spacing: 3px;
+}
+
+.description-blue {
+  text-shadow: black 1px 0 10px;
+}
+
+.description-red {
+  text-shadow: red 1px 0 10px;
+
+}

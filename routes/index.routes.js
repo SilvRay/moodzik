@@ -9,7 +9,7 @@ const User = require("../models/User.model");
 
 /* GET home site */
 router.get("/", (req, res, next) => {
-  res.render("index", { layout: false });
+  res.render("index");
 });
 
 /* GET signup */
@@ -88,6 +88,6 @@ router.get("/homepage", (req, res, next) => {
 });
 
 router.get("/genres", (req, res, next) => {
-  res.render("genres");
+  res.render("genres", { layout: false });
 });
 module.exports = router;
