@@ -1,0 +1,21 @@
+
+
+.main-signup{
+    background-image: url("/images/signup.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.form-signup{
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    flex-direction: column;
+}
+
+.form-signup label{
+    color: white;
+}

@@ -14,7 +14,7 @@ router.get("/", (req, res, next) => {
 
 /* GET signup */
 router.get("/signup", (req, res, next) => {
-  res.render("signup", { layout: false });
+  res.render("signup");
 });
 
 /* POST signup */
@@ -37,7 +37,7 @@ router.post("/signup", (req, res, next) => {
 
 /* GET login */
 router.get("/login", (req, res, next) => {
-  res.render("login", { layout: false });
+  res.render("login");
 });
 
 /* POST login */
@@ -88,6 +88,6 @@ router.get("/homepage", (req, res, next) => {
 });
 
 router.get("/genres", (req, res, next) => {
-  res.render("genres", { layout: false });
+  res.render("genres");
 });
 module.exports = router;

@@ -54,7 +54,7 @@ font-weight: bold;
 #homesite .main {
   background-image: url('/images/homesite.jpg');
   background-size: cover;
-  background-position: right;
+  background-position: center;
   flex: 1;
 }
 
