@@ -8,7 +8,7 @@
     position: relative;
 }
 
-.form-container {
+.fs-container {
     background: linear-gradient(90deg, rgba(94,60,9,0.38) 5%, rgba(94,60,9,0.8) 50%, rgba(17,35,81,0.38) 50%, rgba(17,35,81,0.38) 95%);
     position: absolute;
     top: 100px;
@@ -43,11 +43,6 @@
     color: white;
     width: 155px;
     text-align: right;
-}
-
-input {
-    height: 31px;
-    width: 217px;
 }
 
 .btn-container {
@@ -119,7 +114,7 @@ input {
     align-items: center;
 }
 
-.to_register {
+.to_login {
     width: 95px;
     height: 21px;
     background-color: white;
@@ -128,18 +123,10 @@ input {
     padding: 3px 5px;
     border-radius: 10px;
     border: none;
-}
-
-.to_register:hover {
-    transform: scaleX(1.1);
-    transition: all 0.3s;
-}
-
-.form-container a {
     display: flex;
 }
 
-.logo {
-    margin-left: auto;
-    margin-right: auto;
+.to_login:hover {
+    transform: scaleX(1.1);
+    transition: all 0.3s;
 }

@@ -1,31 +1,57 @@
-<div>
-  <form action="/login" method="POST">
-    <label>
-      Email:
-      <input type="text" name="email" required />
-    </label>
+<main class="main-login">
 
-    <label>
-      Password:
-      <input
-        type="password"
-        name="password"
-        required
-        placeholder="************"
-      />
-    </label>
+  <section class="fl-container">
+    <form action="/login" method="POST" class="form-login">
+      <div class="label-container">
+        <label for="email">
+          Email:
+        </label>
+        <input
+          type="text"
+          name="email"
+          id="email"
+          required
+          placeholder="johndoe@gmail.com"
+        />
+      </div>
 
-    <div class="button">
-      <button>Login</button>
-    </div>
+      <div class="label-container">
+        <label for="password">
+          Password:
+        </label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          required
+          placeholder="************"
+        />
+      </div>
 
-    <div class="change-link">
-      Not a member yet ?
-      <a href="/login" class="to_register">Join us</a>
-    </div>
+      <div class="btn-container">
+        <div class="btn-login">
+          <button>
+            Login
+            <span></span><span></span><span></span><span></span>
+          </button>
+        </div>
 
-    {{#if errorMessage}}
-      <p>{{errorMessage}}</p>
-    {{/if}}
-  </form>
-</div>
+        <div class="change-link">
+          Not a member yet ?
+          <a href="/signup" class="to_register">Join us</a>
+        </div>
+      </div>
+
+      <a href="/" class="link-logo"><img
+          class="logo"
+          src="/images/music_logo_2.png"
+          alt="logo Moodzik"
+        /></a>
+
+      {{#if errorMessage}}
+        <p>{{errorMessage}}</p>
+      {{/if}}
+    </form>
+  </section>
+
+</main>

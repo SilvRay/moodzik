@@ -1,19 +1,31 @@
 <main class="main-signup">
 
-  <section class="form-container">
+  <section class="fs-container">
     <form action="/signup" method="POST" class="form-signup">
       <div class="label-container">
         <label for="username">
           Username:
         </label>
-        <input type="text" name="username" id="username" required />
+        <input
+          type="text"
+          name="username"
+          id="username"
+          required
+          placeholder="JohnD"
+        />
       </div>
 
       <div class="label-container">
         <label for="email">
           Email:
         </label>
-        <input type="text" name="email" id="email" required />
+        <input
+          type="text"
+          name="email"
+          id="email"
+          required
+          placeholder="johndoe@gmail.com"
+        />
       </div>
 
       <div class="label-container">
@@ -40,11 +52,11 @@
 
       <div class="change-link">
         Already a member ?
-        <a href="/login" class="to_register">Go and log in</a>
+        <a href="/login" class="to_login">Go and log in</a>
       </div>
     </div>
 
-    <a href="/"><img
+    <a href="/" class="link-logo"><img
         class="logo"
         src="/images/music_logo_2.png"
         alt="logo Moodzik"
