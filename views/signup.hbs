@@ -1,31 +1,53 @@
 <main class="main-signup">
-  
 
-<form action="/signup" method="POST" class="form-signup">
-  <label>
-    Username:
-    <input type="text" name="username" required />
-  </label>
+  <section class="form-container">
+    <form action="/signup" method="POST" class="form-signup">
+      <div class="label-container">
+        <label for="username">
+          Username:
+        </label>
+        <input type="text" name="username" id="username" required />
+      </div>
 
-  <label>
-    Email:
-    <input type="text" name="email" required />
-  </label>
+      <div class="label-container">
+        <label for="email">
+          Email:
+        </label>
+        <input type="text" name="email" id="email" required />
+      </div>
 
-  <label>
-    Password:
-    <input type="password" name="password" required placeholder="******" />
-  </label>
-<div class="btn-signup">
-  
-  <div class="button">
-    <button>Sign up</button>
-  </div>
+      <div class="label-container">
+        <label for="password">
+          Password:
+        </label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          required
+          placeholder="*********"
+        />
+      </div>
+    </form>
 
-  <div class="change-link">
-    Already a member ?
-    <a href="/login" class="to_register">Go and log in</a>
-  </div>
-</div>
-</form>
+    <div class="btn-container">
+      <div class="btn-signup">
+        <button>
+          Sign up
+          <span></span><span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div class="change-link">
+        Already a member ?
+        <a href="/login" class="to_register">Go and log in</a>
+      </div>
+    </div>
+
+    <a href="/"><img
+        class="logo"
+        src="/images/music_logo_2.png"
+        alt="logo Moodzik"
+      /></a>
+  </section>
 </main>

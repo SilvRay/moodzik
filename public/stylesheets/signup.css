@@ -5,17 +5,141 @@
     background-size: cover;
     background-position: center;
     height: 100vh;
+    position: relative;
+}
+
+.form-container {
+    background: linear-gradient(90deg, rgba(94,60,9,0.38) 5%, rgba(94,60,9,0.8) 50%, rgba(17,35,81,0.38) 50%, rgba(17,35,81,0.38) 95%);
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    width: 510px;
+    height: 513px;
+    padding-top: 50px;
+    padding-left: 37px;
+    padding-right: 37px;
+    display: flex;
+    flex-direction: column;
+    gap: 43px;
 }
 
 .form-signup{
-    margin-left: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
     flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 40px;
+}
+
+.label-container {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    font-size: 20px;
+
 }
 
 .form-signup label{
     color: white;
+    width: 155px;
+    text-align: right;
+}
+
+input {
+    height: 31px;
+    width: 217px;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.btn-signup button {
+    width: 126px;
+    height: 37px;
+    border-radius: 10px;
+    border: 0.3em solid #5E3C09;
+    background-color: transparent;
+    /* border: none; */
+    color:white;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.btn-signup button span {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: #5E3C09;
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--n) - 1) * 25%);
+    transition: 0.5s;
+    transition-delay: calc((var(--n) - 1) * 0.1s);
+    z-index: -1;
+}
+
+.btn-signup button:hover {
+    color: goldenrod;
+}
+
+.btn-signup button:hover span {
+    transform: translateY(0) scale(2);
+}
+
+.btn-signup button span:nth-child(1) {
+    --n: 1;
+}
+
+.btn-signup button span:nth-child(2) {
+    --n: 2;
+}
+
+.btn-signup button span:nth-child(3) {
+    --n: 3;
+}
+
+.btn-signup button span:nth-child(4) {
+    --n: 4;
+}
+
+.change-link {
+    font-size: 13px;
+    color: white;
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.to_register {
+    width: 95px;
+    height: 21px;
+    background-color: white;
+    color: black;
+    font-weight: 600;
+    padding: 3px 5px;
+    border-radius: 10px;
+    border: none;
+}
+
+.to_register:hover {
+    transform: scaleX(1.1);
+    transition: all 0.3s;
+}
+
+.form-container a {
+    display: flex;
+}
+
+.logo {
+    margin-left: auto;
+    margin-right: auto;
 }

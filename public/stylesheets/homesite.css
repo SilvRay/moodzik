@@ -1,14 +1,5 @@
 /* brown-color: #5E3C09
 blue-color: #112351 */
-  @import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Inter:wght@400;700&family=Lato:wght@400;700;900&display=swap');
-
-
-
-
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-}
  
 #homesite {
   display: flex;
@@ -16,11 +7,6 @@ body {
   min-height: 100vh;
 
 }
-
-#homesite .logo {
-    height: 65px;
-
-  }
   
 #homesite nav {
   background-color: #AB9D9D;
