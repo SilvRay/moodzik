@@ -34,6 +34,7 @@ router.get("/signup", (req, res, next) => {
 /* POST signup */
 router.post("/signup", (req, res, next) => {
   console.log("yooo", req.body);
+  log;
 
   const passwordHash = bcrypt.hashSync(req.body.password, salt);
 
