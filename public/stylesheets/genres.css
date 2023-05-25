@@ -2,12 +2,16 @@
     padding-top: 100px;
     padding-left: 100px;
     padding-right: 100px;
-    display: grid;
-    /* grid-template-columns: repeat(6,1fr);
-    grid-gap: 10px; */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     flex-wrap: wrap;
+}
+
+.main-genres .genres-container {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
     gap: 20px;
 }
 
@@ -31,20 +35,25 @@
     background-color: #5E3C09;
 }
 
-.genres-container {
+.genre-container {
     width: 165px;
     height: 165px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
 
-.genres-container:hover {
+.genre-container:hover {
     opacity: 0.5;
     width: 170px;
     height: 170px;
     transition: 0.5s all;
+}
+
+.genre-container label {
+    font-size: 25px;
 }
 
 .g-btn-container {

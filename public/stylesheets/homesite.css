@@ -7,16 +7,6 @@ blue-color: #112351 */
   min-height: 100vh;
 
 }
-  
-#homesite nav {
-  background-color: #AB9D9D;
-  display: flex;
-  padding: 10px 0px 10px 50px;
-}
-
-.logo-nav {
-  height: 65px;
-}
 
 #homesite .nav-content {
   margin-left: auto;
@@ -25,10 +15,6 @@ blue-color: #112351 */
   align-items: center;
   gap: 30px;
   padding-right: 150px;
-}
-.nav-content a{
-  text-decoration: none;
-  font-size: 30px;
 }
 
 .login{
@@ -41,7 +27,7 @@ color:#5E3C09;
 font-weight: bold;
 }
 
-#homesite .main {
+#homesite .main-homesite {
   background-image: url('/images/homesite.jpg');
   background-size: cover;
   background-position: center;
@@ -54,7 +40,7 @@ font-weight: bold;
   margin-left: 20px;
 }
 
-.main h1{
+.main-homesite h1{
   color: #5E3C09;
   text-align: center;
   font-size: 40px;
@@ -62,7 +48,7 @@ font-weight: bold;
 
 }
 
-.main p {
+.main-homesite p {
   color: white;
   text-shadow: #FC0 1px 0 10px;
   font-size: 20px;

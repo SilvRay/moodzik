@@ -1,4 +1,5 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const userSchema = new Schema(
@@ -9,7 +10,7 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Password is required"],
     },
-    genres: [String],
+    genres: { type: mongoose.Schema.Types.ObjectId, ref: "Genres" },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
@@ -17,6 +18,6 @@ const userSchema = new Schema(
   }
 );
 
-const User = model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

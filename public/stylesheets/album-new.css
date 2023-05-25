@@ -1,0 +1,13 @@
+.album-new {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-album-new {
+    background-image: url("/images/create-album.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex: 1;
+}

@@ -29,3 +29,34 @@ input {
     margin-left: auto;
     margin-right: auto;
 }
+
+nav {
+  background-color: #AB9D9D;
+  display: flex;
+  padding: 10px 0px 10px 50px;
+}
+
+.nav-content {
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding-right: 30px;
+}
+
+.logo-nav {
+  height: 65px;
+}
+
+
+.nav-content a{
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.i-profil {
+  height: 50px;
+  margin-right: 50px;
+  margin-block: auto;
+}
