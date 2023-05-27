@@ -159,4 +159,15 @@ router.post("/genres", (req, res, next) => {
 router.get("/album-new", (req, res, next) => {
   res.render("album-new");
 });
+
+router.post("/album-new", (req, res, next) => {
+  console.log("SESSION =======>", req.body);
+  spotifyApi
+    .searchTracks(req.body.track)
+    .then((value) => {
+      console.log("value is:", value.body.tracks.items);
+      res.redirect("homepage");
+    })
+    .catch((err) => next(err));
+});
 module.exports = router;

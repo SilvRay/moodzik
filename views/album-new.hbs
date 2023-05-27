@@ -11,10 +11,22 @@
   <div class="main-album-new">
     <form action="/album-new" method="POST">
       <label for="title">Titre d'album</label>
-      <input type="text" name="title" id="title" required />
-      <select name="tracks">
-        <option value=""></option>
-      </select>
+      <input type="text" name="title" id="title" />
+
+      <div>
+        <input type="text" name="track" />
+        <button>Add</button>
+      </div>
+      {{#each tracks}}
+        <p>{{this.name_tracks}}</p>
+      {{/each}}
+
+      <div class="album-btn-container">
+        <button>
+          Validate
+          <span></span><span></span><span></span><span></span>
+        </button>
+      </div>
     </form>
   </div>
 </main>
