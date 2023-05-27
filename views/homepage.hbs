@@ -7,4 +7,14 @@
     </div>
     <img class="i-profil" src="/images/femme.png" alt="icône profile" />
   </nav>
+
+  <div class="playlists-container">
+    {{#each playlists}}
+      <div>
+        <img src="{{this.images.url}}" alt="" />
+        <h2>{{this.name}}</h2>
+      </div>
+    {{/each}}
+
+  </div>
 </main>

@@ -7,8 +7,6 @@ const salt = bcrypt.genSaltSync(saltRounds);
 
 const User = require("../models/User.model");
 
-const Genres = require("../models/Genres.model");
-
 const SpotifyWebApi = require("spotify-web-api-node");
 
 const spotifyApi = new SpotifyWebApi({
@@ -103,32 +101,59 @@ router.get("/logout", (req, res, next) => {
 /* GET home page */
 router.get("/homepage", (req, res, next) => {
   console.log("SESSION =====> ", req.session);
-  // spotifyApi.getPlaylistsForCategory(req.session.currentUser.genres);
-  if (req.session.currentUser) {
-    res.render("homepage", {
-      userFromDB: req.session.currentUser,
+
+  if (!req.session.currentUser) return res.redirect("login");
+
+  // retrieve le user en base (pour obtenir ses infos a jour, genres)
+
+  const promises = [];
+  req.session.currentUser.genres.forEach(function (genre) {
+    console.log("genre is =======", genre);
+    const p = spotifyApi.getPlaylistsForCategory(genre, {
+      limit: 4,
+      offset: 0,
     });
-  } else {
-    res.redirect("login");
-  }
+    promises.push(p);
+  });
+
+  Promise.all(promises)
+    .then((values) => {
+      // console.log("values are:", values[0].body.playlists.items);
+      let playlists = [];
+      values.forEach((genre) => {
+        playlists = [...playlists, ...genre.body.playlists.items];
+      });
+      console.log("playlists =", playlists.length);
+
+      res.render("homepage", {
+        playlists: playlists,
+      });
+    })
+    .catch((err) => next(err));
 });
 
 router.get("/genres", (req, res, next) => {
   // console.log("SESSION =====> ", req.session);
-
-  res.render("genres");
+  spotifyApi
+    .getAvailableGenreSeeds()
+    .then(function (values) {
+      console.log(values);
+      res.render("genres");
+    })
+    .catch((err) => next(err));
 });
 
 router.post("/genres", (req, res, next) => {
   console.log("req.body is:", req.body);
-  Genres.create({
+  User.findByIdAndUpdate(req.session.currentUser._id, {
     genres: req.body.genres,
   })
-    .then((genresFromDB) => {
-      console.log("genresFromDB is:", genresFromDB);
+    .then((userFromDB) => {
+      console.log("userFromDB is:", userFromDB);
+      req.session.currentUser = userFromDB;
       res.redirect("homepage");
     })
-    .catch((err) => next(err));
+    .catch();
 });
 
 router.get("/album-new", (req, res, next) => {
