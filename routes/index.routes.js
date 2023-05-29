@@ -158,16 +158,26 @@ router.post("/genres", (req, res, next) => {
 
 router.get("/album-new", (req, res, next) => {
   res.render("album-new");
+  console.log("req.query is", req.query);
+
+  spotifyApi
+    .searchTracks(req.query.track)
+    .then((value) => {
+      // console.log("tracks =", tracks);
+      console.log("value is:", value.body.tracks.items);
+      res.render("album-new", {
+        tracks: value.body.tracks.items[0],
+      });
+    })
+    .catch((err) => next(err));
 });
 
 router.post("/album-new", (req, res, next) => {
   console.log("SESSION =======>", req.body);
-  spotifyApi
-    .searchTracks(req.body.track)
-    .then((value) => {
-      console.log("value is:", value.body.tracks.items);
-      res.redirect("homepage");
-    })
-    .catch((err) => next(err));
+  res.redirect("homepage");
+});
+
+router.get("/profile", (req, res, next) => {
+  res.render("profile");
 });
 module.exports = router;

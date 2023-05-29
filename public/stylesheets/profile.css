@@ -1,0 +1,70 @@
+.h-profile {
+    background-color: #5E3C09;
+    height: 300px;
+    padding-left: 135px;
+    padding-top: 14px;
+}
+
+.info-profile {
+    background-color: rgba(17, 35, 81, 0.30);
+    width: 722px;
+    height: 270px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.pic-container {
+    width: 225px;
+    height: 225px;
+    position: relative;
+    border: 6px solid #112351;
+    border-radius: 50%;
+    background: url("/images/Sakina.png");
+    background-size: cover;
+    margin-left: 10px;
+    overflow: hidden;
+}
+
+.pic-container input {
+    background: rgba(17, 35, 81, 0.50);
+    position: absolute;
+    bottom: 0;
+    outline: none;
+    color: transparent;
+    width: 100%;
+    padding-top: 10px;
+    height: 70px;
+    cursor: pointer;
+    transition: 0.5s;
+    
+}
+
+.pic-container input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.pic-container input::before {
+    content:"\f030";
+    font-family: fontAwesome;
+    font-size: 30px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-user-select: none;
+}
+
+.pic-container input::after {
+    content: "Update";
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    
+}
+
+.profile p {
+    color: white;
+}
