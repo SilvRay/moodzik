@@ -10,24 +10,55 @@
 
   <div class="main-album-new">
     <form action="/album-new" method="POST">
-      <label for="title">Titre d'album</label>
-      <input type="text" name="title" id="title" />
+      <section class="overall-container">
+        <div class="album-elements">
+          <div class="title-container">
+            <label for="title">Titre d'album :</label>
+            <input type="text" name="title" id="title" />
+          </div>
 
-      <div>
-        <input type="text" name="track" />
-        <button>Add</button>
-      </div>
+          <div class="search-tracks-container">
+            <div class="search-tracks-wrapper">
+              <input type="text" name="track" id="track-search" />
+              <div id="search-results"></div>
+            </div>
+            <img src="/images/loupe.png" alt="loupe" />
+          </div>
 
-      {{#each tracks}}
-        <p>{{name}} - {{artists.name}}</p>
-      {{/each}}
+          <div class="cover-container">
+            <input
+              type="file"
+              name="cover"
+              id="cover"
+              accept="image/png, image/jpeg image/jpg"
+            />
+          </div>
+        </div>
+
+        <div class="tracks-list">
+          <p></p>
+        </div>
+      </section>
 
       <div class="album-btn-container">
-        <button>
+        <button class="val-btn">
           Validate
           <span></span><span></span><span></span><span></span>
         </button>
+        <button class="can-btn">
+          Cancel
+          <span></span><span></span><span></span><span></span>
+        </button>
       </div>
+
     </form>
+    <div class="add-btn">
+      <button class="add">
+        Add
+        <span></span><span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </main>
+
+<script src="/js/album-new.js"></script>

@@ -55,16 +55,6 @@
     -webkit-user-select: none;
 }
 
-.pic-container input::after {
-    content: "Update";
-    font-weight: bold;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    
-}
-
 .profile p {
     color: white;
 }
