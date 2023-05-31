@@ -15,8 +15,10 @@
   <div class="playlists-container">
     {{#each playlists}}
       <div class="playlist-content">
-        <img src="{{images.0.url}}" alt="" />
-        <h2>{{name}}</h2>
+        <a href="/player/{{id}}">
+          <img src="{{images.0.url}}" alt="" />
+          <h2>{{name}}</h2>
+        </a>
       </div>
     {{/each}}
 

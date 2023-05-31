@@ -173,7 +173,7 @@ router.get("/album-new", (req, res, next) => {
 });
 
 router.post("/album-new", (req, res, next) => {
-  console.log("SESSION =======>", req.body);
+  console.log("req.body =======>", req.body);
 
   Album.create({
     title: req.body.title,
@@ -194,7 +194,7 @@ router.get("/search", (req, res, next) => {
   spotifyApi
     .searchTracks(req.query.q)
     .then((data) => {
-      // console.log("data is:", data);
+      console.log("data is:", data.body.tracks.items);
       res.json(data.body.tracks.items);
     })
     .catch((err) => next(err));
@@ -202,5 +202,18 @@ router.get("/search", (req, res, next) => {
 
 router.get("/profile", (req, res, next) => {
   res.render("profile");
+});
+
+router.get("/player/:playlistId", (req, res, next) => {
+  const playlistId = req.params.playlistId;
+
+  spotifyApi
+    .getPlaylist(playlistId)
+    .then((data) => {
+      const playlist = data.body;
+
+      res.render("player", { playlist });
+    })
+    .catch((err) => next(err));
 });
 module.exports = router;

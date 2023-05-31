@@ -20,14 +20,40 @@ trackSearch.addEventListener("keyup", function () {
         data.forEach(function (item) {
           // Ajoute le nom de la piste et le nom de l'artiste au conteneur des résultats de la recherche
           // data.length = 5;
-          searchResults.innerHTML +=
-            "<p class='one-track'>" +
-            item.name +
-            " by " +
-            item.artists[0].name +
-            "</p>";
+
+          const $p = document.createElement("p"); // <p>
+
+          $p.innerHTML = `${item.name} by ${item.artists[0].name}`;
+
+          searchResults.appendChild($p);
+
+          $p.addEventListener("click", function () {
+            console.log("Click sur l'élément track", trackSearch);
+            numTrack += 1;
+
+            const $pList = document.createElement("p");
+            $pList.innerHTML = `${numTrack} ${$p.textContent}`;
+
+            const $input = document.createElement("input");
+            $input.type = "hidden";
+
+            $input.value = trackList.appendChild($pList);
+
+            const validateBtn = document.querySelector(".val-btn");
+
+            if (trackList.childElementCount >= 8) {
+              validateBtn.disabled = false;
+            } else {
+              validateBtn.disabled = true;
+            }
+
+            trackSearch.dataset.trackid = item.id;
+
+            trackSearch.value = this.textContent;
+          });
         });
       })
+
       .catch((error) => console.error("Error:", error)); // Affiche une erreur si une erreur se produit
   } else {
     // Si la requête a 2 caractères ou moins, vide le conteneur des résultats de la recherche
@@ -35,26 +61,29 @@ trackSearch.addEventListener("keyup", function () {
   }
 });
 
-const tracks = searchResults.getElementsByTagName("p");
-
-// Parcourir tous les éléments <p>
-for (let i = 0; i < tracks.length; i++) {
-  let track = tracks[i];
-
-  track.addEventListener("click", function () {
-    console.log("Click sur l'élément track");
-    // trackSearch.innerHTML = this.value;
-  });
-}
-
 const addBtn = document.getElementById("add");
-const trackList = document.getElementsByClassName("tracks-list");
+const trackList = document.querySelector(".tracks-list");
+let numTrack = 0;
 
 // Ajoute un évènement "click" au boutton "Add"
 addBtn.addEventListener("click", function () {
-  // Récupère la valeur du champ de recherche
-  // console.log("coucou");
-  const query = trackSearch.value;
+  console.log("coucou", trackList.childElementCount);
 
-  trackList.innerHTML += "<p>" + query + "</p>";
+  // numTrack += 1;
+
+  // const $p = document.createElement("p");
+  // $p.innerHTML = `${numTrack} ${trackSearch.value}`;
+
+  // const $input = document.createElement("input");
+  // $input.type = "hidden";
+  // $input.value = trackList.appendChild($p);
+  // $input.data.trackid = item.id;
+
+  // const validateBtn = document.querySelector(".val-btn");
+
+  // if (trackList.childElementCount >= 3) {
+  //   validateBtn.disabled = false;
+  // } else {
+  //   validateBtn.disabled = true;
+  // }
 });

@@ -38,6 +38,14 @@
     border-radius: 5px; 
     height: 500px;
     width: 400px;
+    padding-left: 10px;
+    overflow: scroll;
+}
+
+.tracks-list p {
+    color: white;
+    font-size: 20px;
+    margin-right: 20px;
 }
 
 .album-elements {
@@ -116,6 +124,7 @@
     overflow: hidden;
     z-index: 1;
     transition: 0.5s;
+    display: none;
 }
 
 #add span {
@@ -210,6 +219,9 @@
     overflow: hidden;
     z-index: 1;
     transition: 0.5s;
+}
+.val-btn[disabled] {
+    display: none;
 }
 
 .val-btn span {
