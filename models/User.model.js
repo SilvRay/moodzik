@@ -11,6 +11,7 @@ const userSchema = new Schema(
       required: [true, "Password is required"],
     },
     genres: [String],
+    albums: [{ type: mongoose.Schema.Types.ObjectId, ref: "Album" }],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

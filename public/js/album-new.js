@@ -12,7 +12,7 @@ trackSearch.addEventListener("keyup", function () {
     fetch("/search?q=" + encodeURIComponent(query))
       .then((response) => response.json()) // Transforme la réponse en JSON
       .then((data) => {
-        console.log("data is", data);
+        // console.log("data is", data);
         // Vide le conteneur des résultats de la recherche
         searchResults.innerHTML = "";
 
@@ -21,7 +21,11 @@ trackSearch.addEventListener("keyup", function () {
           // Ajoute le nom de la piste et le nom de l'artiste au conteneur des résultats de la recherche
           // data.length = 5;
           searchResults.innerHTML +=
-            "<p>" + item.name + " by " + item.artists[0].name + "</p>";
+            "<p class='one-track'>" +
+            item.name +
+            " by " +
+            item.artists[0].name +
+            "</p>";
         });
       })
       .catch((error) => console.error("Error:", error)); // Affiche une erreur si une erreur se produit
@@ -29,4 +33,28 @@ trackSearch.addEventListener("keyup", function () {
     // Si la requête a 2 caractères ou moins, vide le conteneur des résultats de la recherche
     searchResults.innerHTML = "";
   }
+});
+
+const tracks = searchResults.getElementsByTagName("p");
+
+// Parcourir tous les éléments <p>
+for (let i = 0; i < tracks.length; i++) {
+  let track = tracks[i];
+
+  track.addEventListener("click", function () {
+    console.log("Click sur l'élément track");
+    // trackSearch.innerHTML = this.value;
+  });
+}
+
+const addBtn = document.getElementById("add");
+const trackList = document.getElementsByClassName("tracks-list");
+
+// Ajoute un évènement "click" au boutton "Add"
+addBtn.addEventListener("click", function () {
+  // Récupère la valeur du champ de recherche
+  // console.log("coucou");
+  const query = trackSearch.value;
+
+  trackList.innerHTML += "<p>" + query + "</p>";
 });

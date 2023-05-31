@@ -6,6 +6,7 @@ const saltRounds = 10;
 const salt = bcrypt.genSaltSync(saltRounds);
 
 const User = require("../models/User.model");
+const Album = require("../models/Album.model");
 
 const SpotifyWebApi = require("spotify-web-api-node");
 
@@ -173,6 +174,19 @@ router.get("/album-new", (req, res, next) => {
 
 router.post("/album-new", (req, res, next) => {
   console.log("SESSION =======>", req.body);
+
+  Album.create({
+    title: req.body.title,
+    album_cover: req.body.cover,
+    tracks: req.body.track,
+  })
+    .then((albumFromDB) => {
+      res.redirect("homepage");
+    })
+    .catch((err) => {
+      res.render("album-new");
+      next(err);
+    });
   res.redirect("homepage");
 });
 
