@@ -181,12 +181,7 @@ router.post("/album-new", (req, res, next) => {
     tracks: req.body.tracks,
   })
     .then((albumFromDB) => {
-      Album.find().then((albumsFromDB) => {
-        console.log("all the albums are here:", albumsFromDB);
-        res.render("profile", {
-          allAlbums: albumsFromDB[0],
-        });
-      });
+      res.redirect("profile");
     })
 
     .catch((err) => {
@@ -206,18 +201,17 @@ router.get("/search", (req, res, next) => {
 });
 
 router.get("/profile", (req, res, next) => {
-  console.log("req.params is:", req.params, "req.session is:", req.session);
   User.findById(req.session.currentUser)
     .then((userFromDB) => {
-      console.log("userfromDB:", userFromDB);
-      req.session.currentUser = userFromDB;
-      res.render("profile", userFromDB);
-    })
-    .catch((err) => next(err));
-
-  Album.find()
-    .then((albumsFromDB) => {
-      console.log("all the albums created", albumsFromDB);
+      Album.find()
+        .then((albumsFromDB) => {
+          console.log("all the albums created", albumsFromDB);
+          res.render("profile", {
+            allAlbums: albumsFromDB[0],
+            user: userFromDB,
+          });
+        })
+        .catch((err) => next(err));
     })
     .catch((err) => next(err));
 });
@@ -233,6 +227,11 @@ router.get("/player/:playlistId", (req, res, next) => {
       res.render("player", { playlist });
     })
     .catch((err) => next(err));
+});
+
+router.get("/profile/delete-album", (req, res, next) => {
+  console.log("yooo", req.session);
+  Album.findByIdAndRemove(req.session);
 });
 
 router.get("/profile-edit", (req, res, next) => {

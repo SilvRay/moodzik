@@ -36,7 +36,7 @@ app.use(function (req, res, next) {
     );
   }
 
-  // req.session.currentUser
+  req.session.currentUser;
 
   next();
 });
