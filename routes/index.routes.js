@@ -245,11 +245,16 @@ router.get("/player/:playlistId", (req, res, next) => {
 });
 
 router.post("/profile/delete-album", (req, res, next) => {
-  console.log("yooo", req.session);
-  Album.findByIdAndRemove(req.session.currentUser._id)
+  console.log(req.body);  // Ajoutez ceci pour voir ce qui est contenu dans le corps de la requête.
+  Album.findByIdAndRemove(req.body.albumId)
     .then(() => res.redirect("/profile"))
-    .catch((err) => next(err));
+    .catch((err) => {
+      console.log(err);  // Ajoutez ceci pour voir l'erreur qui est renvoyée.
+      next(err);
+    });
 });
+
+
 
 router.get("/profile-edit", (req, res, next) => {
   console.log(req.session);
@@ -268,5 +273,16 @@ router.post("/profile-edit", (req, res, next) => {
     })
     .catch((err) => next(err));
 });
+
+router.get("/album-new/:albumId", (req, res, next) => {
+  const albumId = req.params.albumId;
+
+  Album.findById(albumId)
+    .then(album => {
+      res.render("album-edit", { album: album });
+    })
+    .catch(err => next(err));
+});
+
 
 module.exports = router;
