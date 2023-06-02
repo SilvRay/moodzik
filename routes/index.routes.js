@@ -182,7 +182,7 @@ router.get("/album-new", (req, res, next) => {
 });
 
 router.post("/album-new", (req, res, next) => {
-  console.log("req.body =======>", req.body);
+  // console.log("req.body =======>", req.body);
 
   Album.create({
     title: req.body.title,
@@ -190,7 +190,12 @@ router.post("/album-new", (req, res, next) => {
     tracks: req.body.tracks,
   })
     .then((albumFromDB) => {
-      res.redirect("profile");
+      User.findById(req.session.currentUser._id)
+        .populate("albums")
+        .then((userFromDB) => {
+          console.log("userFromDB avec albums:", userFromDB);
+          res.redirect("profile");
+        });
     })
     .catch((err) => {
       console.error(err); // Ajoutez cette ligne
@@ -246,6 +251,7 @@ router.get("/player/:playlistId", (req, res, next) => {
 
 router.post("/profile/delete-album", (req, res, next) => {
   console.log("yooo", req.session);
+  Album.find;
   Album.findByIdAndRemove(req.session.currentUser._id)
     .then(() => res.redirect("/profile"))
     .catch((err) => next(err));

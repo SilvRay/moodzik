@@ -165,7 +165,7 @@
 }
 
 .cover-container {
-    background-image: url("/images/Sakina.png");
+    border: 1px solid #5E3C09;
     background-size: cover;
     width: 193px;
     height: 176px;
