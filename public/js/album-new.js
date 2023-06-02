@@ -97,3 +97,17 @@ addBtn.addEventListener("click", function () {
   //   validateBtn.disabled = true;
   // }
 });
+
+function previewImage(event, imageId) {
+  var reader = new FileReader();
+  var imageField = document.getElementById(imageId);
+
+  reader.onload = function(){
+    if(reader.readyState === 2){
+      imageField.src = reader.result;
+      imageField.style.display = "block";
+    }
+  }
+  reader.readAsDataURL(event.target.files[0]);
+}
+

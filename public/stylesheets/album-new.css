@@ -313,3 +313,15 @@
 .can-btn span:nth-child(4) {
     --n: 4;
 }
+
+#cover-preview {
+    border-radius: 5px 5px 5px 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;  /* to cover the entire parent */
+    top: 0;
+    left: 0;
+  }
+  
+  

@@ -2,13 +2,16 @@
   <header class="h-profile">
     <div class="info-profile">
       <div class="pic-container">
-        <input
-          type="file"
-          name="avatar"
-          id="avatar"
-          accept="image/png, image/jpeg image/jpg"
-        />
-      </div>
+  <input
+    type="file"
+    name="avatar"
+    id="avatar"
+    accept="image/png, image/jpeg image/jpg"
+    onchange="previewAvatar(event)"
+  />
+  <img id="avatar-preview" src="" alt="Avatar preview" style="display:none;">
+</div>
+
       <section class="details-profile">
         <div class="icons">
           <a href="/profile-edit">
@@ -43,15 +46,20 @@
     {{#each allAlbums}}
       <div class="album-wrapper">
         <div class="cover">
-          <img src="/images/{{album_cover}}" alt="cover" />
+         <img src="/{{this.album_cover}}" alt="cover" />
+
         </div>
         <div class="btn-albums">
-          <a href="">Edit</a>
-          <form action="{{_id/delete}}" method="POST">
-            <button>Delete</button>
-          </form>
+          <a href="/album-edit/{{_id}}">Edit</a>
+
+          <form action="/album-new" method="POST" enctype="multipart/form-data">
+
+  <button>Delete</button>
+</form>
+
         </div>
       </div>
     {{/each}}
   </div>
 </main>
+<script src="/js/profile.js"></script>

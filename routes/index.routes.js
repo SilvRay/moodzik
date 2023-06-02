@@ -10,6 +10,7 @@ const Album = require("../models/Album.model");
 
 const SpotifyWebApi = require("spotify-web-api-node");
 
+
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
@@ -146,16 +147,26 @@ router.get("/genres", (req, res, next) => {
 
 router.post("/genres", (req, res, next) => {
   console.log("req.body is:", req.body);
-  User.findByIdAndUpdate(req.session.currentUser._id, {
-    genres: req.body.genres,
-  })
-    .then((userFromDB) => {
-      console.log("userFromDB is:", userFromDB);
-      req.session.currentUser = userFromDB;
-      res.redirect("profile");
+
+  if (req.body.genres) {
+    User.findByIdAndUpdate(req.session.currentUser._id, {
+      genres: req.body.genres,
     })
-    .catch();
+      .then((userFromDB) => {
+        console.log("userFromDB is:", userFromDB);
+        req.session.currentUser = userFromDB;
+        res.redirect("homepage"); // Redirect to homepage
+      })
+      .catch((err) => {
+        console.error("Error updating user:", err);
+        next(err); // Propagate error to Express error handler
+      });
+  } else {
+    console.error("req.body.genres is undefined");
+    res.redirect("homepage"); // Redirect to homepage if genres is undefined
+  }
 });
+
 
 router.get("/album-new", (req, res, next) => {
   spotifyApi
@@ -174,21 +185,21 @@ router.get("/album-new", (req, res, next) => {
 
 router.post("/album-new", (req, res, next) => {
   console.log("req.body =======>", req.body);
-
+  
   Album.create({
     title: req.body.title,
-    album_cover: req.body.cover,
+    album_cover: req.body.album_cover, // Si l'URL de l'image est envoyée dans le corps de la demande
     tracks: req.body.tracks,
   })
-    .then((albumFromDB) => {
-      res.redirect("profile");
-    })
-
-    .catch((err) => {
-      res.render("album-new");
-      next(err);
-    });
+  .then((albumFromDB) => {
+    res.redirect("profile");
+  })
+  .catch((err) => {
+    console.error(err); // Ajoutez cette ligne
+    res.render("album-new");
+  });
 });
+
 
 router.get("/search", (req, res, next) => {
   spotifyApi
@@ -205,9 +216,16 @@ router.get("/profile", (req, res, next) => {
     .then((userFromDB) => {
       Album.find()
         .then((albumsFromDB) => {
+          // Affiche tous les albums dans la console
           console.log("all the albums created", albumsFromDB);
+
+          // Vérifie si le premier album a un album_cover défini
+          if (albumsFromDB.length > 0) {
+            console.log("First album cover path:", albumsFromDB[0].album_cover);
+          }
+
           res.render("profile", {
-            allAlbums: albumsFromDB[0],
+            allAlbums: albumsFromDB, // Removed [0] to pass all albums, not just the first one
             user: userFromDB,
           });
         })
@@ -237,4 +255,6 @@ router.get("/profile/delete-album", (req, res, next) => {
 router.get("/profile-edit", (req, res, next) => {
   res.render("profile-edit", {});
 });
+
+
 module.exports = router;

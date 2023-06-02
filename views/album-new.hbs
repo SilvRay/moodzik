@@ -13,7 +13,8 @@
   </nav>
 
   <div class="main-album-new">
-    <form action="/album-new" method="POST">
+    <form action="/album-new" method="POST" enctype="multipart/form-data">
+
       <section class="overall-container">
         <div class="album-elements">
           <div class="title-container">
@@ -34,14 +35,18 @@
             <img src="/images/loupe.png" alt="loupe" />
           </div>
 
-          <div class="cover-container">
-            <input
-              type="file"
-              name="cover"
-              id="cover"
-              accept="image/png, image/jpeg image/jpg"
-            />
-          </div>
+         <div class="cover-container">
+  <input
+    type="file"
+    name="cover"
+    id="cover"
+    accept="image/png, image/jpeg image/jpg"
+    onchange="previewImage(event, 'cover-preview')"
+  />
+  <img id="cover-preview" src="" alt="Album cover preview" style="display:none;">
+</div>
+
+
         </div>
 
         <div class="tracks-list"></div>
