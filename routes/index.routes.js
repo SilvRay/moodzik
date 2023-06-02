@@ -152,7 +152,7 @@ router.post("/genres", (req, res, next) => {
     .then((userFromDB) => {
       console.log("userFromDB is:", userFromDB);
       req.session.currentUser = userFromDB;
-      res.redirect("homepage");
+      res.redirect("profile");
     })
     .catch();
 });
@@ -178,16 +178,21 @@ router.post("/album-new", (req, res, next) => {
   Album.create({
     title: req.body.title,
     album_cover: req.body.cover,
-    tracks: req.body.track,
+    tracks: req.body.tracks,
   })
     .then((albumFromDB) => {
-      res.redirect("homepage");
+      Album.find().then((albumsFromDB) => {
+        console.log("all the albums are here:", albumsFromDB);
+        res.render("profile", {
+          allAlbums: albumsFromDB[0],
+        });
+      });
     })
+
     .catch((err) => {
       res.render("album-new");
       next(err);
     });
-  res.redirect("homepage");
 });
 
 router.get("/search", (req, res, next) => {
@@ -201,7 +206,20 @@ router.get("/search", (req, res, next) => {
 });
 
 router.get("/profile", (req, res, next) => {
-  res.render("profile");
+  console.log("req.params is:", req.params, "req.session is:", req.session);
+  User.findById(req.session.currentUser)
+    .then((userFromDB) => {
+      console.log("userfromDB:", userFromDB);
+      req.session.currentUser = userFromDB;
+      res.render("profile", userFromDB);
+    })
+    .catch((err) => next(err));
+
+  Album.find()
+    .then((albumsFromDB) => {
+      console.log("all the albums created", albumsFromDB);
+    })
+    .catch((err) => next(err));
 });
 
 router.get("/player/:playlistId", (req, res, next) => {
@@ -215,5 +233,9 @@ router.get("/player/:playlistId", (req, res, next) => {
       res.render("player", { playlist });
     })
     .catch((err) => next(err));
+});
+
+router.get("/profile-edit", (req, res, next) => {
+  res.render("profile-edit", {});
 });
 module.exports = router;

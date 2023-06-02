@@ -2,6 +2,8 @@
 const trackSearch = document.getElementById("track-search");
 const searchResults = document.getElementById("search-results");
 
+let numTrack = 0;
+
 // Ajoute un événement "keyup" au champ de recherche
 trackSearch.addEventListener("keyup", function () {
   // Récupère la valeur du champ de recherche
@@ -27,18 +29,28 @@ trackSearch.addEventListener("keyup", function () {
 
           searchResults.appendChild($p);
 
+          // Ajoute un événement "click" au aux paragraphes
           $p.addEventListener("click", function () {
             console.log("Click sur l'élément track", trackSearch);
+
             numTrack += 1;
 
+            // Ajoute le nom de la piste et le nom de l'artiste au conteneur de la liste des morceaux que contiendra l'album
             const $pList = document.createElement("p");
             $pList.innerHTML = `${numTrack} ${$p.textContent}`;
+            trackList.appendChild($pList);
 
+            // Crée un élément input (caché) et l'ajoute au conteneur de la liste des morceaux que contiendra l'album afin de récupérer les id de chaque morceau ajouté
             const $input = document.createElement("input");
             $input.type = "hidden";
+            $input.dataset.trackid = item.id;
+            $input.value = item.id;
+            $input.name = "tracks";
+            trackList.appendChild($input);
 
-            $input.value = trackList.appendChild($pList);
+            console.log("$input:", $input);
 
+            // Active le bouton validate à partir de 8 morceaux ajoutés
             const validateBtn = document.querySelector(".val-btn");
 
             if (trackList.childElementCount >= 8) {
@@ -47,9 +59,8 @@ trackSearch.addEventListener("keyup", function () {
               validateBtn.disabled = true;
             }
 
-            trackSearch.dataset.trackid = item.id;
-
-            trackSearch.value = this.textContent;
+            // Ajoute le nom de la piste et le nom de l'artiste à l'input qui permet de rechercher les morceaux
+            trackSearch.value = $p.textContent;
           });
         });
       })
@@ -63,7 +74,6 @@ trackSearch.addEventListener("keyup", function () {
 
 const addBtn = document.getElementById("add");
 const trackList = document.querySelector(".tracks-list");
-let numTrack = 0;
 
 // Ajoute un évènement "click" au boutton "Add"
 addBtn.addEventListener("click", function () {

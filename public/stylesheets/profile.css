@@ -3,6 +3,9 @@
     height: 300px;
     padding-left: 135px;
     padding-top: 14px;
+    padding-bottom: 14px;
+    display: flex;
+    gap: 130px;
 }
 
 .info-profile {
@@ -12,6 +15,8 @@
     border-radius: 30px;
     display: flex;
     align-items: center;
+    gap: 20px;
+    position: relative;
 }
 
 .pic-container {
@@ -55,6 +60,91 @@
     -webkit-user-select: none;
 }
 
+.details-profile {
+    width: 60%;
+}
+
 .profile p {
     color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.g-list {
+    overflow: hidden;
+}
+
+.fa-pen::before {
+    content: "\f304";
+    font-family: fontAwesome;
+    font-size: 30px;
+    color: black;
+    position: absolute;
+    top: 17px;
+    right: 40px;
+    -webkit-user-select: none;
+}
+
+.menu-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.menu-profile a {
+    color: #112351;
+    font-size: 24px;
+}
+
+.albums-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 150px;
+    padding: 50px 100px;
+}
+
+.album-wrapper, 
+.album-wrapper .cover img {
+    width: 250px;
+    height: 245px;
+}
+
+.btn-albums {
+    padding: 20px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.albums-display a {
+    display: block;
+    width: 100px;
+    color: #5E3C09;
+    font-weight: 700;
+    background-color: white;
+    padding: 5px 0;
+    margin-block: auto;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.btn-albums form {
+    margin: 0;
+    width: 100px;
+
+}
+
+.btn-albums button {
+    color: white;
+    font-weight: 700;
+    background-color: #5E3C09;
+    width: 100px;
+    border-radius: 10px;
+    padding: 5px 0;
+    border: none;
+    height: 30px;
 }

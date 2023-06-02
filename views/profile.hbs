@@ -9,15 +9,49 @@
           accept="image/png, image/jpeg image/jpg"
         />
       </div>
-      <section>
+      <section class="details-profile">
         <div class="icons">
-          <i class="fa-light fa-pen"></i>
+          <a href="/profile-edit">
+            <i class="fa-light fa-pen"></i>
+          </a>
         </div>
-
-        <p><span>Username</span><span></span></p>
-        <p><span>Email</span><span></span></p>
-        <p><span>Genres</span><span></span></p>
+        <div>
+          <p>
+            <span>Username</span>
+            <span>{{username}}</span>
+          </p>
+          <p>
+            <span>Email</span>
+            <span>{{email}}</span>
+          </p>
+          <p>
+            <span>Genres</span>
+            <span class="g-list">{{genres}}</span>
+          </p>
+        </div>
       </section>
     </div>
+
+    <div class="menu-profile">
+      <a href="/homepage" class="homepage">Homepage</a>
+      <a href="/album-new" class="create-album">Create an album</a>
+      <a href="/genres" class="create-album">Modify Genres</a>
+    </div>
   </header>
+
+  <div class="albums-display">
+    {{#each allAlbums}}
+      <div class="album-wrapper">
+        <div class="cover">
+          <img src="/images/{{album_cover}}" alt="cover" />
+        </div>
+        <div class="btn-albums">
+          <a href="">Edit</a>
+          <form action="{{_id/delete}}" method="POST">
+            <button>Delete</button>
+          </form>
+        </div>
+      </div>
+    {{/each}}
+  </div>
 </main>

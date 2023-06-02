@@ -5,6 +5,7 @@ const albumSchema = new Schema({
   title: String,
   album_cover: String,
   tracks: [String],
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
 const Album = mongoose.model("Album", albumSchema);
