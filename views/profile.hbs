@@ -55,15 +55,14 @@
 
         </div>
         <div class="btn-albums">
-          <a href="/album-new">Edit</a>
+          <a href="/album-new/{{this._id}}">Edit</a>
 
-          <form
-            action="/profile/delete-album"
-            method="POST"
-            {{! enctype="multipart/form-data" }}
-          >
-            <button>Delete</button>
-          </form>
+
+     <form action="/profile/delete-album" method="POST">
+  <input type="hidden" name="albumId" value="{{this._id}}">
+  <button type="submit">Delete</button>
+</form>
+
 
         </div>
       </div>
