@@ -1,6 +1,7 @@
 // Récupère les éléments de la page
 const trackSearch = document.getElementById("track-search");
 const searchResults = document.getElementById("search-results");
+const trackList = document.querySelector(".tracks-list");
 
 let numTrack = 0;
 
@@ -72,42 +73,15 @@ trackSearch.addEventListener("keyup", function () {
   }
 });
 
-const addBtn = document.getElementById("add");
-const trackList = document.querySelector(".tracks-list");
-
-// Ajoute un évènement "click" au boutton "Add"
-addBtn.addEventListener("click", function () {
-  console.log("coucou", trackList.childElementCount);
-
-  // numTrack += 1;
-
-  // const $p = document.createElement("p");
-  // $p.innerHTML = `${numTrack} ${trackSearch.value}`;
-
-  // const $input = document.createElement("input");
-  // $input.type = "hidden";
-  // $input.value = trackList.appendChild($p);
-  // $input.data.trackid = item.id;
-
-  // const validateBtn = document.querySelector(".val-btn");
-
-  // if (trackList.childElementCount >= 3) {
-  //   validateBtn.disabled = false;
-  // } else {
-  //   validateBtn.disabled = true;
-  // }
-});
-
 function previewImage(event, imageId) {
   var reader = new FileReader();
   var imageField = document.getElementById(imageId);
 
-  reader.onload = function(){
-    if(reader.readyState === 2){
+  reader.onload = function () {
+    if (reader.readyState === 2) {
       imageField.src = reader.result;
       imageField.style.display = "block";
     }
-  }
+  };
   reader.readAsDataURL(event.target.files[0]);
 }
-

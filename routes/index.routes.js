@@ -10,7 +10,6 @@ const Album = require("../models/Album.model");
 
 const SpotifyWebApi = require("spotify-web-api-node");
 
-
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
@@ -167,7 +166,6 @@ router.post("/genres", (req, res, next) => {
   }
 });
 
-
 router.get("/album-new", (req, res, next) => {
   spotifyApi
     .searchTracks(req.query.track)
@@ -185,21 +183,20 @@ router.get("/album-new", (req, res, next) => {
 
 router.post("/album-new", (req, res, next) => {
   console.log("req.body =======>", req.body);
-  
+
   Album.create({
     title: req.body.title,
     album_cover: req.body.album_cover, // Si l'URL de l'image est envoyée dans le corps de la demande
     tracks: req.body.tracks,
   })
-  .then((albumFromDB) => {
-    res.redirect("profile");
-  })
-  .catch((err) => {
-    console.error(err); // Ajoutez cette ligne
-    res.render("album-new");
-  });
+    .then((albumFromDB) => {
+      res.redirect("profile");
+    })
+    .catch((err) => {
+      console.error(err); // Ajoutez cette ligne
+      res.render("album-new");
+    });
 });
-
 
 router.get("/search", (req, res, next) => {
   spotifyApi
@@ -247,14 +244,29 @@ router.get("/player/:playlistId", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.get("/profile/delete-album", (req, res, next) => {
+router.post("/profile/delete-album", (req, res, next) => {
   console.log("yooo", req.session);
-  Album.findByIdAndRemove(req.session);
+  Album.findByIdAndRemove(req.session.currentUser._id)
+    .then(() => res.redirect("/profile"))
+    .catch((err) => next(err));
 });
 
 router.get("/profile-edit", (req, res, next) => {
-  res.render("profile-edit", {});
+  console.log(req.session);
+  res.render("profile-edit", {
+    user: req.session.currentUser,
+  });
 });
 
+router.post("/profile-edit", (req, res, next) => {
+  User.findByIdAndUpdate(req.session.currentUser._id, {
+    username: req.body.username,
+    email: req.body.email,
+  })
+    .then((updatedUser) => {
+      res.redirect("/profile");
+    })
+    .catch((err) => next(err));
+});
 
 module.exports = router;

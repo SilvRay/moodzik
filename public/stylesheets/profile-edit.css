@@ -1,6 +1,95 @@
-h1{
-    color: white;;
+.profile-edit {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
-label{
+
+.edit-pro {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 50px;
+    flex: 1;
+    padding-top: 50px;
+}
+
+.edit-pro h1{
     color: white;
+    font-size: 40px;
+}
+
+.edit-pro form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.edit-pro label{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-size: 20px;
+}
+
+.edit-pro label input {
+    width: 470px;
+    height: 40px;
+}
+
+.edit-pro button {
+    margin-top: 20px;
+    width: 126px;
+    height: 37px;
+    border-radius: 10px;
+    border: 0.3em solid #5E3C09;
+    background-color: transparent;
+    /* border: none; */
+    color:white;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.edit-pro button span {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: #5E3C09;
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--n) - 1) * 25%);
+    transition: 0.5s;
+    transition-delay: calc((var(--n) - 1) * 0.1s);
+    z-index: -1;
+}
+
+.edit-pro button:hover {
+    color: goldenrod;
+}
+
+.edit-pro button:hover span {
+    transform: translateY(0) scale(2);
+}
+
+.edit-pro button span:nth-child(1) {
+    --n: 1;
+}
+
+.edit-pro button span:nth-child(2) {
+    --n: 2;
+}
+
+.edit-pro button span:nth-child(3) {
+    --n: 3;
+}
+
+.edit-pro button span:nth-child(4) {
+    --n: 4;
 }
