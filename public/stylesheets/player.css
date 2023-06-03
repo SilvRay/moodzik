@@ -73,3 +73,8 @@ h1 {
     margin-bottom: 0;
     color: whitesmoke;
 }
+  
+  #playerActions img {
+    width: 50px;  
+    height: 50px; 
+  }
