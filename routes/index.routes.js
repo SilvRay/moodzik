@@ -278,17 +278,11 @@ router.post("/profile-edit", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.get("/album-edit", (req, res, next) => {
-  res.render("album-edit");
-});
-
-router.get("/album-edit/:albumId", (req, res, next) => {
-  console.log("coucou", req.params);
+router.get("/album-new/:albumId", (req, res, next) => {
   const albumId = req.params.albumId;
 
   Album.findById(albumId)
     .then((album) => {
-      console.log("yooo", album);
       res.render("album-edit", { album: album });
     })
     .catch((err) => next(err));
