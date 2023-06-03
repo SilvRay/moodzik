@@ -1,0 +1,325 @@
+.album-edit {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.album-edit input {
+    width: 456px;
+    height: 39px;
+}
+
+.main-album-edit {
+    background-image: url("/images/create-album.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex: 1;
+    padding-top: 30px;
+    position: relative;
+}
+
+.main-album-edit form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+}
+
+.overall-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.tracks-list {
+    background: linear-gradient(0deg, rgba(94,60,9,0.3) 0%, rgba(94,60,9,0.5) 37%, rgba(17,35,81,1) 95%);  
+    border-radius: 5px; 
+    height: 500px;
+    width: 400px;
+    padding-left: 10px;
+    overflow: scroll;
+}
+
+.tracks-list p {
+    color: white;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.album-elements {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
+.title-container {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-tracks-container {
+    display: flex;
+    margin-top: 50px;
+    position: relative;
+}
+
+.search-tracks-container img {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 10px;
+    top: 8px;
+}
+
+.search-tracks-container>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#search-results {
+    height: 192px;
+    overflow: scroll;
+}
+
+#search-results p {
+    width: 450px;
+    height: 39px;
+    background-color: white;
+    margin: 0;
+    border: 1px solid black;
+}
+
+#search-results p:hover {
+    background-color: #112351;
+    color: white;
+}
+
+.add-btn {
+    width: 126px;
+    height: 37px;
+    position: absolute;
+    top: 120px;
+    right: 44%;
+}
+
+#add {
+    width: 126px;
+    height: 37px;
+    margin-left: 20px;
+    border-radius: 10px;
+    background-color: white;
+    border: none;
+    color:#5E3C09;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: 0.5s;
+    display: none;
+}
+
+#add span {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: #5E3C09;
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--n) - 1) * 25%);
+    transition: 0.5s;
+    transition-delay: calc((var(--n) - 1) * 0.1s);
+    z-index: -1;
+}
+
+#add:hover {
+    color: goldenrod;
+}
+
+#add:hover span {
+    transform: translateY(0) scale(2);
+}
+
+#add span:nth-child(1) {
+    --n: 1;
+}
+
+#add span:nth-child(2) {
+    --n: 2;
+}
+
+#add span:nth-child(3) {
+    --n: 3;
+}
+
+#add span:nth-child(4) {
+    --n: 4;
+}
+
+.cover-container {
+    border: 1px solid #5E3C09;
+    background-size: cover;
+    width: 193px;
+    height: 176px;
+    border-radius: 5px 5px 5px 0;
+    position: relative;
+    align-self: end;
+}
+
+#cover {
+    position: absolute;
+    bottom: 0;
+    right: 193px;
+    width: 217px;
+    height: 31px;
+    color: black;
+    background-color: #AB9D9D;
+    cursor: pointer;
+}
+
+#cover::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+#cover::before {
+    content:"Upload Image";
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-user-select: none;
+}
+
+.album-btn-container {
+    display: flex;
+    gap: 100px;
+}
+
+.val-btn {
+    width: 126px;
+    height: 37px;
+    border-radius: 10px;
+    border: 0.3em solid #5E3C09;
+    background-color: transparent;
+    color:white;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: 0.5s;
+}
+.val-btn[disabled] {
+    display: none;
+}
+
+.val-btn span {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: #5E3C09;
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--n) - 1) * 25%);
+    transition: 0.5s;
+    transition-delay: calc((var(--n) - 1) * 0.1s);
+    z-index: -1;
+}
+
+.val-btn:hover {
+    color: goldenrod;
+}
+
+.val-btn:hover span {
+    transform: translateY(0) scale(2);
+}
+
+.val-btn span:nth-child(1) {
+    --n: 1;
+}
+
+.val-btn span:nth-child(2) {
+    --n: 2;
+}
+
+.val-btn span:nth-child(3) {
+    --n: 3;
+}
+
+.val-btn span:nth-child(4) {
+    --n: 4;
+}
+
+.can-btn {
+    width: 126px;
+    height: 37px;
+    border-radius: 10px;
+    border: 0.3em solid #112351;
+    background-color: transparent;
+    color:white;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.can-btn span {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: #112351;
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--n) - 1) * 25%);
+    transition: 0.5s;
+    transition-delay: calc((var(--n) - 1) * 0.1s);
+    z-index: -1;
+}
+
+.can-btn:hover {
+    color: goldenrod;
+}
+
+.can-btn:hover span {
+    transform: translateY(0) scale(2);
+}
+
+.can-btn span:nth-child(1) {
+    --n: 1;
+}
+
+.can-btn span:nth-child(2) {
+    --n: 2;
+}
+
+.can-btn span:nth-child(3) {
+    --n: 3;
+}
+
+.can-btn span:nth-child(4) {
+    --n: 4;
+}
+
+#cover-preview {
+    border-radius: 5px 5px 5px 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;  /* to cover the entire parent */
+    top: 0;
+    left: 0;
+  }

@@ -227,7 +227,7 @@ router.get("/profile", (req, res, next) => {
           }
 
           res.render("profile", {
-            allAlbums: albumsFromDB, // Removed [0] to pass all albums, not just the first one
+            allAlbums: albumsFromDB[0], // Removed [0] to pass all albums, not just the first one
             user: userFromDB,
           });
         })
@@ -250,8 +250,9 @@ router.get("/player/:playlistId", (req, res, next) => {
 });
 
 router.post("/profile/delete-album", (req, res, next) => {
-  console.log("yooo", req.session);
-  Album.findByIdAndRemove(req.session.currentUser._id)
+  // console.log("yooo", req.session);
+  console.log(req.body); // Ajoutez ceci pour voir ce qui est contenu dans le corps de la requête.
+  Album.findByIdAndRemove(req.body.albumId)
     .then(() => res.redirect("/profile"))
     .catch((err) => {
       console.log(err); // Ajoutez ceci pour voir l'erreur qui est renvoyée.
@@ -277,11 +278,17 @@ router.post("/profile-edit", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.get("/album-new/:albumId", (req, res, next) => {
+router.get("/album-edit", (req, res, next) => {
+  res.render("album-edit");
+});
+
+router.get("/album-edit/:albumId", (req, res, next) => {
+  console.log("coucou", req.params);
   const albumId = req.params.albumId;
 
   Album.findById(albumId)
     .then((album) => {
+      console.log("yooo", album);
       res.render("album-edit", { album: album });
     })
     .catch((err) => next(err));

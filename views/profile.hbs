@@ -51,18 +51,16 @@
     {{#each allAlbums}}
       <div class="album-wrapper">
         <div class="cover">
-          <img src="/{{this.album_cover}}" alt="cover" />
+          <img src="/{{album_cover}}" alt="cover" />
 
         </div>
         <div class="btn-albums">
-          <a href="/album-new/{{this._id}}">Edit</a>
+          <a href="/album-edit/{{_id}}">Edit</a>
 
-
-     <form action="/profile/delete-album" method="POST">
-  <input type="hidden" name="albumId" value="{{this._id}}">
-  <button type="submit">Delete</button>
-</form>
-
+          <form action="/profile/delete-album" method="POST">
+            <input type="hidden" name="albumId" value="{{this._id}}" />
+            <button type="submit">Delete</button>
+          </form>
 
         </div>
       </div>

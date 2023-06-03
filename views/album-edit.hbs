@@ -1,0 +1,80 @@
+<main class="album-edit">
+  <nav>
+    <img class="logo-nav" src="images/music_logo_2.png" alt="logo Moodzik" />
+    <div class="nav-content">
+      <a href="/homepage" class="homepage">Homepage</a>
+      <a href="/album-new" class="create-album">Create an album</a>
+    </div>
+    <a href="/profile"><img
+        class="i-profil"
+        src="/images/femme.png"
+        alt="icône profile"
+      /></a>
+  </nav>
+
+  <div class="main-album-edit">
+    <form action="/album-edit" method="POST" enctype="multipart/form-data">
+
+      <section class="overall-container">
+        <div class="album-elements">
+          <div class="title-container">
+            <label for="title">Titre d'album :</label>
+            <input type="text" name="title" id="title" />
+          </div>
+
+          <div class="search-tracks-container">
+            <div class="search-tracks-wrapper">
+              <input
+                type="text"
+                name="track"
+                id="track-search"
+                data-trackid=""
+              />
+              <div id="search-results"></div>
+            </div>
+            <img src="/images/loupe.png" alt="loupe" />
+          </div>
+
+          <div class="cover-container">
+            <input
+              type="file"
+              name="cover"
+              id="cover"
+              accept="image/png, image/jpeg image/jpg"
+              onchange="previewImage(event, 'cover-preview')"
+            />
+            <img
+              id="cover-preview"
+              src=""
+              alt="Album cover preview"
+              style="display:none;"
+            />
+          </div>
+
+        </div>
+
+        <div class="tracks-list"></div>
+      </section>
+
+      <div class="album-btn-container">
+        <button class="val-btn">
+          Validate
+          <span></span><span></span><span></span><span></span>
+        </button>
+        <button class="can-btn">
+          Cancel
+          <span></span><span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </form>
+    <div class="add-btn">
+      <button id="add">
+        Add
+        <span></span><span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</main>
+
+<script src="/js/album-new.js"></script>
