@@ -4,6 +4,11 @@
     flex-direction: column;
 }
 
+.main-player .create-album {
+  color: #5E3C09;
+  font-weight: bold;
+}
+
 .player-wrapper {
     flex: 1;
     display: flex;
@@ -48,7 +53,7 @@ h1 {
 }
 
 .main-player .track-list {
-    height: 430px;
+    height: 350px;
     overflow: scroll;
     display: flex;
     flex-direction: column;
@@ -56,7 +61,7 @@ h1 {
 }
 
 .main-player .track-list .song {
-    background-color: #5E3C09;
+    
     border-radius: 10px;
     width: 580px;
     padding: 5px 0 5px 5px;
@@ -77,4 +82,86 @@ h1 {
   #playerActions img {
     width: 50px;  
     height: 50px; 
+  }
+  .totalSongs{
+    color: white;
+  }
+  .playlistName {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #8B4513; 
+    color: #fff; 
+    text-decoration: none; 
+    transition: background-color 0.3s ease; /* Animation douce lors du survol */
+  }
+  
+  .playlistName:hover {
+    background-color: #A0522D; 
+  }
+  #playerInfoAndActions {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .current-track-info {
+    color: white;
+  }
+
+
+  #playerActions {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    color: white;
+  }
+.player-wrapper{
+    position: relative;
+}
+.current-track-info{
+    position: absolute;
+    bottom: 0;
+    left: 40;
+}
+
+#player{
+    display: none;
+}
+
+.buttons{
+    display: flex;
+    gap: 50px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 5px;
+    background: #ddd;
+    position: relative;
+    margin-top: 50px;
+  }
+  
+  .progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #8B4513;
+  }
+  
+  @keyframes progress {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  
+  .progress {
+    animation-name: progress;
+    animation-duration: 30s; 
+    animation-timing-function: linear;
+    animation-fill-mode: forwards; 
+    animation-play-state: paused; 
   }

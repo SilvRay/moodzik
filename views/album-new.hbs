@@ -1,11 +1,11 @@
 <main class="album-new">
   <nav>
-    <img class="logo-nav" src="images/music_logo_2.png" alt="logo Moodzik" />
+    <img class="logo-nav" src="/images/music_logo_2.png" alt="logo Moodzik" />
     <div class="nav-content">
-      <a href="/homepage" class="homepage">Homepage</a>
+      <a href="/albums" class="albums">Albums</a>
       <a href="/album-new" class="create-album">Create an album</a>
     </div>
-    <a href="/profile"><img
+    <a href="/homepage"><img
         class="i-profil"
         src="/images/femme.png"
         alt="icône profile"
@@ -35,17 +35,21 @@
             <img src="/images/loupe.png" alt="loupe" />
           </div>
 
-         <div class="cover-container">
-  <input
-    type="file"
-    name="cover"
-    id="cover"
-    accept="image/png, image/jpeg image/jpg"
-    onchange="previewImage(event, 'cover-preview')"
-  />
-  <img id="cover-preview" src="" alt="Album cover preview" style="display:none;">
-</div>
-
+          <div class="cover-container">
+            <input
+              type="file"
+              name="cover"
+              id="cover"
+              accept="image/png, image/jpeg image/jpg"
+              onchange="previewImage(event, 'cover-preview')"
+            />
+            <img
+              id="cover-preview"
+              src=""
+              alt="Album cover preview"
+              style="display:none;"
+            />
+          </div>
 
         </div>
 

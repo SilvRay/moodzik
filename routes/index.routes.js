@@ -154,7 +154,7 @@ router.post("/genres", (req, res, next) => {
       .then((userFromDB) => {
         console.log("userFromDB is:", userFromDB);
         req.session.currentUser = userFromDB;
-        res.redirect("homepage"); // Redirect to homepage
+        res.redirect("albums"); // Redirect to homepage
       })
       .catch((err) => {
         console.error("Error updating user:", err);
@@ -186,7 +186,7 @@ router.post("/album-new", (req, res, next) => {
 
   Album.create({
     title: req.body.title,
-    album_cover: req.body.album_cover, // Si l'URL de l'image est envoyée dans le corps de la demande
+    album_cover: req.body.cover, // Si l'URL de l'image est envoyée dans le corps de la demande
     tracks: req.body.tracks,
   })
     .then((albumFromDB) => {
@@ -194,7 +194,7 @@ router.post("/album-new", (req, res, next) => {
         .populate("albums")
         .then((userFromDB) => {
           console.log("userFromDB avec albums:", userFromDB);
-          res.redirect("profile");
+          res.redirect("albums");
         });
     })
     .catch((err) => {
@@ -213,25 +213,20 @@ router.get("/search", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.get("/profile", (req, res, next) => {
-  User.findById(req.session.currentUser)
-    .then((userFromDB) => {
-      Album.find()
-        .then((albumsFromDB) => {
-          // Affiche tous les albums dans la console
-          console.log("all the albums created", albumsFromDB);
+router.get("/albums", (req, res, next) => {
+  Album.find()
+    .then((albumsFromDB) => {
+      // Affiche tous les albums dans la console
+      console.log("all the albums created", albumsFromDB);
 
-          // Vérifie si le premier album a un album_cover défini
-          if (albumsFromDB.length > 0) {
-            console.log("First album cover path:", albumsFromDB[0].album_cover);
-          }
+      // Vérifie si le premier album a un album_cover défini
+      if (albumsFromDB.length > 0) {
+        console.log("First album cover path:", albumsFromDB[0].album_cover);
+      }
 
-          res.render("profile", {
-            allAlbums: albumsFromDB[0], // Removed [0] to pass all albums, not just the first one
-            user: userFromDB,
-          });
-        })
-        .catch((err) => next(err));
+      res.render("albums", {
+        allAlbums: albumsFromDB, // Removed [0] to pass all albums, not just the first one
+      });
     })
     .catch((err) => next(err));
 });
@@ -250,11 +245,11 @@ router.get("/player/:playlistId", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.post("/profile/delete-album", (req, res, next) => {
+router.post("/albums/delete-album", (req, res, next) => {
   // console.log("yooo", req.session);
   console.log(req.body); // Ajoutez ceci pour voir ce qui est contenu dans le corps de la requête.
   Album.findByIdAndRemove(req.body.albumId)
-    .then(() => res.redirect("/profile"))
+    .then(() => res.redirect("/albums"))
     .catch((err) => {
       console.log(err); // Ajoutez ceci pour voir l'erreur qui est renvoyée.
       next(err);
@@ -274,32 +269,52 @@ router.post("/profile-edit", (req, res, next) => {
     email: req.body.email,
   })
     .then((updatedUser) => {
-      res.redirect("/profile");
+      res.redirect("/albums");
     })
     .catch((err) => next(err));
 });
 
-router.get("/album-edit/:albumId", (req, res, next) => {
+// router.get("/album-edit", (req, res, next) => {
+//   res.render("album-edit");
+// });
+
+router.get("/album/:albumId/edit", (req, res, next) => {
   const albumId = req.params.albumId;
 
+  console.log("req.params is:", req.params);
+
   Album.findById(albumId)
-    .then((album) => {
-      console.log("yooo", album);
-      res.render("album-edit", { album: album });
+    .then((albumFromDB) => {
+      console.log("albumFromDB ======>", albumFromDB);
+
+      spotifyApi
+        .getTracks(albumFromDB.tracks)
+        .then((tracks) => {
+          console.log("tracks are:", tracks.body.tracks);
+          res.render("album-edit", {
+            album: albumFromDB,
+            tracks: tracks.body.tracks,
+          });
+        })
+        .catch((err) => next(err));
     })
     .catch((err) => next(err));
 });
 
-router.get("/album-edit", (req, res, next) => {
-  // console.log("coucouuu", req.params);
-  // const albumId = req.params.albumId;
+router.post("/album/:albumId/edit", (req, res, next) => {
+  console.log("req.params ===>", req.params, "req.body", req.body);
+  const albumId = req.params.albumId;
+  console.log("albumId=", albumId);
 
-  // Album.findById(albumId)
-  //   .then((album) => {
-  //     console.log("yooo", album);
-  res.render("album-edit");
-  // })
-  // .catch((err) => next(err));
+  Album.findByIdAndUpdate(albumId, {
+    title: req.body.title,
+    album_cover: req.body.cover,
+    tracks: req.body.tracks,
+  })
+    .then((updatedAlbum) => {
+      res.redirect("/albums");
+    })
+    .catch((err) => next(err));
 });
 
 module.exports = router;

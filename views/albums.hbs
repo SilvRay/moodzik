@@ -1,0 +1,35 @@
+<main class="albums">
+  <nav>
+    <img class="logo-nav" src="images/music_logo_2.png" alt="logo Moodzik" />
+    <div class="nav-content">
+      <a href="/albums" class="albums">Albums</a>
+      <a href="/album-new" class="create-album">Create an album</a>
+    </div>
+    <a href="/homepage"><img
+        class="i-profil"
+        src="/images/femme.png"
+        alt="icône profile"
+      /></a>
+  </nav>
+
+  <div class="albums-display">
+    {{#each allAlbums}}
+      <div class="album-wrapper">
+        <div class="cover">
+          <img src="/{{album_cover}}" alt="cover" />
+
+        </div>
+        <div class="btn-albums">
+          <a href="/album/{{_id}}/edit">Edit</a>
+
+          <form action="/profile/delete-album" method="POST">
+            <input type="hidden" name="albumId" value="{{this._id}}" />
+            <button type="submit">Delete</button>
+          </form>
+
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</main>
+<script src="/js/profile.js"></script>

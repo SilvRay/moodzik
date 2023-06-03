@@ -1,45 +1,57 @@
 <main class="main-player">
   <nav>
-    <img class="logo-nav" src="images/music_logo_2.png" alt="logo Moodzik" />
+    <img class="logo-nav" src="/images/music_logo_2.png" alt="logo Moodzik" />
     <div class="nav-content">
       <a href="/homepage" class="homepage">Homepage</a>
       <a href="/album-new" class="create-album">Create an album</a>
     </div>
-    <a href="/profile"><img
-        class="i-profil"
-        src="/images/femme.png"
-        alt="icône profile"
-      /></a>
+    <a href="/homepage"><img class="i-profil" src="/images/femme.png" alt="icône profile" /></a>
   </nav>
 
   <div class="player-wrapper">
     <div class="music-content">
-      <img src="{{playlist.images.0.url}}" alt="Playlist cover image" />
+      <img src="{{playlist.images.0.url}}" alt="Album cover image" />
       <div class="tracks-wrapper">
-        <p class="type">{{playlist.type}}</p>
-        <h1>{{playlist.name}}</h1>
-        <p class="owner">by {{playlist.owner.display_name}}</p>
+        <p class="type">Album</p>
+        <h1 class="songName">{{firstTrack.track.album.name}}</h1>
+        <p class="owner artistName">{{playlist.owner.display_name}}</p>
+        <p class="totalSongs">{{totalSongs}} songs - 2023</p>
+        <p class="playlistName">{{playlist.name}}</p>
 
         <div class="track-list">
           {{#each playlist.tracks.items}}
-            <div class="song" data-preview-url="{{this.track.preview_url}}">
-              <h3>{{this.track.name}}</h3>
-              <p>By {{this.track.artists.0.name}}</p>
-            </div>
+          <div class="song" id="song-{{@index}}" data-preview-url="{{this.track.preview_url}}">
+            <h3>{{this.track.name}}</h3>
+            <p>By {{this.track.artists.0.name}}</p>
+          </div>
+
           {{/each}}
         </div>
       </div>
     </div>
+    <div class="current-track-info">
+      <p class="current-song-name"></p>
+      <p class="current-artist-name"></p>
+    </div>
+    <div class="progress-bar">
+    <div class="progress" id="progress"></div>
+</div>
 
-    <div id="playerActions">
-      <audio id="player" controls>
-        Your browser does not support the audio element.
-      </audio>
+    <div id="playerInfoAndActions">
+
+
+      <div id="playerActions">
+
+    <audio id="player" controls>
+      Your browser does not support the audio element.
+    </audio>
+    <div class="buttons">
       <img id="prev" src="/images/prev.png" />
-      <img id="next" src="/images/next.png" />
       <img id="pause" src="/images/pause.png" />
       <img id="play" src="/images/play.png" style="display:none;" />
+      <img id="next" src="/images/next.png" />
     </div>
   </div>
+</div>
 </main>
 <script src="/js/player.js"></script>

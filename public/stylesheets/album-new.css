@@ -4,6 +4,12 @@
     min-height: 100vh;
 }
 
+.album-new .albums,
+.album-new .create-album {
+    color: #5E3C09;
+    font-weight: bold;
+}
+
 .album-new input {
     width: 456px;
     height: 39px;
