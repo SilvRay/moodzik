@@ -274,15 +274,20 @@ router.post("/profile-edit", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.get("/album-new/:albumId", (req, res, next) => {
-  const albumId = req.params.albumId;
+router.get('/album-new/:albumId', function(req, res, next) {
+  let albumId = req.params.albumId;
 
-  Album.findById(albumId)
-    .then(album => {
-      res.render("album-edit", { album: album });
-    })
-    .catch(err => next(err));
+  // Fetch the album from the database using the albumId
+  Album.findById(albumId, function(err, album) {
+    if (err) {
+      console.error(err);
+      res.status(500).send(err);
+    } else {
+      res.render('album-new', { album: album }); // Render the edit album page with the album data
+    }
+  });
 });
+
 
 
 module.exports = router;

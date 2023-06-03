@@ -323,5 +323,16 @@
     top: 0;
     left: 0;
   }
+
+  .tracks-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.tracks-list p {
+    display: flex;
+    justify-content: space-between;
+}
+
   
   
