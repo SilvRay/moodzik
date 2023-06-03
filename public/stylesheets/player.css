@@ -1,0 +1,75 @@
+.main-player {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.player-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.music-content {
+    display: flex;
+    gap: 55px;
+    display: flex;
+    gap: 55px;
+    padding-left: 60px;
+    padding-top: 20px;
+    padding-right: 50px;
+}
+
+.music-content img {
+    width: 500px;
+    height: 500px;
+}
+
+.main-player .tracks-wrapper {
+    height: 590px;
+}
+
+.tracks-wrapper .type {
+    color: #5E3C09;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+h1 {
+    color: white;
+    font-size: 32px;
+    margin-bottom: 0;
+}
+
+.tracks-wrapper .owner {
+    color: white;
+    margin-top: 5px;
+}
+
+.main-player .track-list {
+    height: 430px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main-player .track-list .song {
+    background-color: #5E3C09;
+    border-radius: 10px;
+    width: 580px;
+    padding: 5px 0 5px 5px;
+}
+
+.main-player .track-list .song h3 {
+    font-size: 20px;
+    margin: 0;
+    color: white;
+}
+
+.main-player .track-list .song p {
+    margin-top: 2px;
+    margin-bottom: 0;
+    color: whitesmoke;
+}

@@ -242,6 +242,7 @@ router.get("/player/:playlistId", (req, res, next) => {
   spotifyApi
     .getPlaylist(playlistId)
     .then((data) => {
+      console.log("heeey", data);
       const playlist = data.body;
 
       res.render("player", { playlist });
@@ -278,14 +279,27 @@ router.post("/profile-edit", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.get("/album-new/:albumId", (req, res, next) => {
+router.get("/album-edit/:albumId", (req, res, next) => {
   const albumId = req.params.albumId;
 
   Album.findById(albumId)
     .then((album) => {
+      console.log("yooo", album);
       res.render("album-edit", { album: album });
     })
     .catch((err) => next(err));
+});
+
+router.get("/album-edit", (req, res, next) => {
+  // console.log("coucouuu", req.params);
+  // const albumId = req.params.albumId;
+
+  // Album.findById(albumId)
+  //   .then((album) => {
+  //     console.log("yooo", album);
+  res.render("album-edit");
+  // })
+  // .catch((err) => next(err));
 });
 
 module.exports = router;

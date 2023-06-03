@@ -1,4 +1,4 @@
-<div>
+<main class="main-player">
   <nav>
     <img class="logo-nav" src="images/music_logo_2.png" alt="logo Moodzik" />
     <div class="nav-content">
@@ -11,25 +11,35 @@
         alt="icône profile"
       /></a>
   </nav>
-  <main> 
-    <img src="{{playlist.images.0.url}}" alt="Playlist cover image">
-  <div>
-    {{#each playlist.tracks.items}}
-      <div class="song" data-preview-url="{{this.track.preview_url}}">
-        <h3>{{this.track.name}}</h3>
-        <p>By {{this.track.artists.0.name}}</p>
+
+  <div class="player-wrapper">
+    <div class="music-content">
+      <img src="{{playlist.images.0.url}}" alt="Playlist cover image" />
+      <div class="tracks-wrapper">
+        <p class="type">{{playlist.type}}</p>
+        <h1>{{playlist.name}}</h1>
+        <p class="owner">by {{playlist.owner.display_name}}</p>
+
+        <div class="track-list">
+          {{#each playlist.tracks.items}}
+            <div class="song" data-preview-url="{{this.track.preview_url}}">
+              <h3>{{this.track.name}}</h3>
+              <p>By {{this.track.artists.0.name}}</p>
+            </div>
+          {{/each}}
+        </div>
       </div>
-    {{/each}}
+    </div>
+
+    <div>
+      <audio id="player" controls>
+        Your browser does not support the audio element.
+      </audio>
+      <img id="prev" src="/images/prev.png" />
+      <img id="next" src="/images/next.png" />
+      <img id="pause" src="/images/pause.png" />
+      <img id="play" src="/images/play.png" style="display:none;" />
+    </div>
   </div>
-
-  <audio id="player" controls>
-    Your browser does not support the audio element.
-  </audio>
-
-  <img id="prev" src="/images/prev.png">
-  <img id="next" src="/images/next.png">
-  <img id="pause" src="/images/pause.png">
-  <img id="play" src="/images/play.png" style="display:none;">
-</div>
 </main>
 <script src="/js/player.js"></script>
