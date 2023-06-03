@@ -13,23 +13,25 @@
   </nav>
   <main> 
     <img src="{{playlist.images.0.url}}" alt="Playlist cover image">
-  <div>
-    {{#each playlist.tracks.items}}
-      <div class="song" data-preview-url="{{this.track.preview_url}}">
-        <h3>{{this.track.name}}</h3>
-        <p>By {{this.track.artists.0.name}}</p>
-      </div>
-    {{/each}}
-  </div>
+    <div id="songsContainer">
+      {{#each playlist.tracks.items}}
+        <div class="song" data-preview-url="{{this.track.preview_url}}">
+          <p><span class="song-number">{{@index}}</span> - <span class="song-name">{{this.track.name}}</span> - <span class="artist-name">By {{this.track.artists.0.name}}</span> - <span class="album-name">From Album {{this.track.album.name}}</span> - <span class="song-duration">{{this.track.duration_ms}}</span></p>
+        </div>
+      {{/each}}
+    </div>
 
-  <audio id="player" controls>
-    Your browser does not support the audio element.
-  </audio>
+    <div id="playerActions">
+      <audio id="player" controls>
+        Your browser does not support the audio element.
+      </audio>
 
-  <img id="prev" src="/images/prev.png">
-  <img id="next" src="/images/next.png">
-  <img id="pause" src="/images/pause.png">
-  <img id="play" src="/images/play.png" style="display:none;">
+      <img id="prev" src="/images/prev.png">
+      <img id="pause" src="/images/pause.png">
+      <img id="play" src="/images/play.png" style="display:none;">
+      <img id="next" src="/images/next.png">
+    </div>
+  </main>
 </div>
-</main>
+
 <script src="/js/player.js"></script>
