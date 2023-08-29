@@ -15,14 +15,15 @@
   <div class="albums-display">
     {{#each allAlbums}}
       <div class="album-wrapper">
-        <div class="cover">
-          <img src="/{{album_cover}}" alt="cover" />
+        <a class="cover" href="/album/{{_id}}">
+          <img src="{{album_cover}}" alt="cover" />
+          <img class="play" src="/images/circle-play.png" alt="play icon" />
+        </a>
 
-        </div>
         <div class="btn-albums">
           <a href="/album/{{_id}}/edit">Edit</a>
 
-          <form action="/profile/delete-album" method="POST">
+          <form action="/albums/delete" method="POST">
             <input type="hidden" name="albumId" value="{{this._id}}" />
             <button type="submit">Delete</button>
           </form>

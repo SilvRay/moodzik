@@ -2,7 +2,7 @@
   <nav>
     <img class="logo-nav" src="/images/music_logo_2.png" alt="logo Moodzik" />
     <div class="nav-content">
-      <a href="/homepage" class="homepage">Homepage</a>
+      <a href="/albums" class="homepage">Homepage</a>
       <a href="/album-new" class="create-album">Create an album</a>
     </div>
     <a href="/homepage"><img class="i-profil" src="/images/femme.png" alt="icône profile" /></a>
@@ -10,9 +10,28 @@
 
   <div class="player-wrapper">
     <div class="music-content">
+      {{!-- {{#if album}}
+            <img src="{{cover}}" alt="Album cover image" />
+
+            <div class="tracks-wrapper">
+                <p class="type">Album</p>
+                <h1 class="songName">{{title}}</h1>
+                <p class="totalSongs">{{tracks.length}} songs - 2023</p>
+                <div class="track-list">
+                {{#if track}}
+                  <div class="song" data-preview-url="{{preview_url}}">
+                    <h3>{{name}}</h3>
+                    <p>By {{artists.0.name}}</p>
+
+                  </div>
+                {{/if}}
+                </div>
+            </div>  
+      {{/if}} --}}
+      
       <img src="{{playlist.images.0.url}}" alt="Album cover image" />
       <div class="tracks-wrapper">
-        <p class="type">Album</p>
+        <p class="type">Playlist</p>
         <h1 class="songName">{{firstTrack.track.album.name}}</h1>
         <p class="owner artistName">{{playlist.owner.display_name}}</p>
         <p class="totalSongs">{{totalSongs}} songs - 2023</p>
@@ -24,11 +43,11 @@
             <h3>{{this.track.name}}</h3>
             <p>By {{this.track.artists.0.name}}</p>
           </div>
-
           {{/each}}
         </div>
       </div>
     </div>
+
     <div class="current-track-info">
       <p class="current-song-name"></p>
       <p class="current-artist-name"></p>

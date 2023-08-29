@@ -2,7 +2,6 @@
 const trackSearch = document.getElementById("track-search");
 const searchResults = document.getElementById("search-results");
 const trackList = document.querySelector(".tracks-list");
-const rmvTrack = document.querySelector(".fa-xmark");
 const track = document.querySelector("track");
 
 let numTrack = 0;
@@ -33,7 +32,7 @@ trackSearch.addEventListener("keyup", function () {
 
             // Ajoute le nom de la piste et le nom de l'artiste au conteneur de la liste des morceaux que contiendra l'album
             const $pList = document.createElement("p");
-            $pList.innerHTML = `${numTrack} ${$p.textContent}`;
+            $pList.innerHTML = `${$p.textContent}`;
             trackList.appendChild($pList);
 
             // Crée un élément button pour la suppression et l'ajoute à $pList
@@ -47,17 +46,13 @@ trackSearch.addEventListener("keyup", function () {
             $button.style.cursor = "pointer";
             $button.style.fontSize = "30px";
 
-            // Suppression des tracks
-            rmvTrack.addEventListener("click", () => {
-              trackList.removeChild(track);
-            });
-
             $pList.appendChild($button);
 
             // Ajoute un listener pour supprimer le morceau et le bouton correspondant quand on clique sur le bouton
             $button.addEventListener("click", function () {
               $pList.remove();
               $input.remove();
+              numTrack -= 1;
             });
 
             // Crée un élément input (caché) et l'ajoute au conteneur de la liste des morceaux que contiendra l'album afin de récupérer les id de chaque morceau ajouté
@@ -70,14 +65,17 @@ trackSearch.addEventListener("keyup", function () {
 
             // Active le bouton validate à partir de 8 morceaux ajoutés
             const validateBtn = document.querySelector(".val-btn");
-            if (trackList.childElementCount >= 8) {
+            if (trackList.childElementCount >= 16) {
               validateBtn.disabled = false;
             } else {
               validateBtn.disabled = true;
             }
 
             // Ajoute le nom de la piste et le nom de l'artiste à l'input qui permet de rechercher les morceaux
-            trackSearch.value = $p.textContent;
+            trackSearch.value = "";
+
+            // Vide le conteneur des résultats de la recherche
+            searchResults.innerHTML = "";
           });
         });
       })

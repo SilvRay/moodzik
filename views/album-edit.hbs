@@ -33,7 +33,7 @@
                 type="text"
                 name="track"
                 id="track-search"
-                data-trackid=""
+                {{! data-trackid="" }}
               />
               <div id="search-results"></div>
             </div>
@@ -47,12 +47,12 @@
               id="cover"
               accept="image/png, image/jpeg image/jpg"
               onchange="previewImage(event, 'cover-preview')"
+              value="{{album.album_cover}}"
             />
             <img
               id="cover-preview"
-              src=""
+              src="{{album.album_cover}}"
               alt="Album cover preview"
-              style="display:none;"
             />
           </div>
 
@@ -63,9 +63,12 @@
             <p class="track">{{name}}
               by
               {{artists.0.name}}
-              <i class="fa-sharp fa-regular fa-xmark"></i>
+              <span
+                class="rmv-track"
+                style="background-color: transparent; border: none; color: white; cursor: pointer; font-size: 30px"
+              >x</span>
             </p>
-            <input type="hidden" name="tracks" value="{{id}}" />
+            <input id="track" type="hidden" name="tracks" value="{{id}}" />
           {{/each}}
 
         </div>
@@ -92,4 +95,4 @@
   </div>
 </main>
 
-<script src="/js/album-new.js"></script>
+<script src="/js/album-edit.js"></script>
